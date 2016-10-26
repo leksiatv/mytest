@@ -39,14 +39,12 @@ class ParseXml {
                                     Attribute idAttr = startElement.getAttributeByName(new QName("id"));
                                     if (idAttr != null) {
                                         off.setId(idAttr.getValue());
-
                                     }
                                     Iterator<Attribute> attributes = xmlEvent.asStartElement().getAttributes();
                                     while (attributes.hasNext()) {
                                         Attribute myAttribute = attributes.next();
                                         off.addHash(MakeHash.main(myAttribute.getValue().toString()));
                                     }
-
                                 } else if (isSecondFile && startElement.getName().getLocalPart().equals("picture")) {
                                     xmlEvent = xmlEventReader.nextEvent();
                                     if (!xmlEvent.isEndElement()) {
@@ -56,8 +54,6 @@ class ParseXml {
                                         imagesList.add(img);
                                         Integer hashString = MakeHash.main(img);
                                         off.addPictures(hashString);
-
-
                                     }
                                 } else {
                                     xmlEvent = xmlEventReader.nextEvent();
@@ -66,11 +62,7 @@ class ParseXml {
                                         off.addHash(MakeHash.main(xmlEvent.asCharacters().getData()));
                                     }
                                 }
-
-
                             }
-
-
                             if (xmlEvent.isEndElement()) {
                                 EndElement endElement = xmlEvent.asEndElement();
                                 if (endElement.getName().getLocalPart().equals("offer")) {
@@ -92,5 +84,4 @@ class ParseXml {
         System.out.println("Parse XML DONE " + offerList.size() + " offers");
         return new XmlFile(offerList, imagesList);
     }
-
 }

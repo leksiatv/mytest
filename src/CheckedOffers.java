@@ -62,5 +62,4 @@ class CheckedOffers {
         }
         return null;
     }
-
 }

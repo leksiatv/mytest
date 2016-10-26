@@ -29,8 +29,6 @@ class OfferHash {
     void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
     }
-
-
 }
 
 

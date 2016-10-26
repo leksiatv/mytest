@@ -14,10 +14,6 @@ class Offer {
         this.id = id;
     }
 
-    private List<Integer> getHashes() {
-        return hashes;
-    }
-
     void addHash(Integer hash) {
         this.hashes.add(hash);
     }
@@ -35,7 +31,7 @@ class Offer {
     @Override
     public String toString() {
         Integer sum = 0;
-        for (Integer hash : getHashes()) {
+        for (Integer hash : (List<Integer>) this.hashes) {
             sum = sum + hash;
         }
         return sum.toString();

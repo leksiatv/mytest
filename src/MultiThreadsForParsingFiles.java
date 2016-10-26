@@ -6,7 +6,6 @@ class MultiThreadsForParsingFiles implements Callable<XmlFile> {
     private String fileName;
     private Boolean isSecondFile;
 
-
     private MultiThreadsForParsingFiles(String fileName, Boolean numFile) {
         this.fileName = fileName;
         this.isSecondFile = numFile;
@@ -16,7 +15,6 @@ class MultiThreadsForParsingFiles implements Callable<XmlFile> {
         ExecutorService executor = Executors.newFixedThreadPool(2);
         List<Future<XmlFile>> list = new ArrayList<>();
         List<XmlFile> offerListFiles = new ArrayList<>();
-
         for (int i = 0; i < arg0.size(); i++) {
             Boolean isSecFile = false;
             if (i == 1) {
@@ -26,7 +24,6 @@ class MultiThreadsForParsingFiles implements Callable<XmlFile> {
             Future<XmlFile> future = executor.submit(callable);
             list.add(future);
         }
-
         for (Future<XmlFile> fut : list) {
             try {
                 if (fut.get() != null) {
@@ -36,7 +33,6 @@ class MultiThreadsForParsingFiles implements Callable<XmlFile> {
                 e.printStackTrace();
             }
         }
-
         executor.shutdown();
         return offerListFiles;
 
@@ -47,8 +43,6 @@ class MultiThreadsForParsingFiles implements Callable<XmlFile> {
         XmlFile offerListFile;
         offerListFile = ParseXml.parseXml(fileName, isSecondFile);
         return offerListFile;
-
     }
-
 }
 

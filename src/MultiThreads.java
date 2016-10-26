@@ -6,7 +6,6 @@ import java.util.concurrent.*;
 class MultiThreads implements Callable<String> {
     private String image;
 
-
     private MultiThreads(String image) {
         this.image = image;
     }
@@ -21,10 +20,8 @@ class MultiThreads implements Callable<String> {
             Future<String> future = executor.submit(callable);
             list.add(future);
         }
-
         for (Future<String> fut : list) {
             try {
-
                 if (fut.get() != null) {
                     listBrokenImgHashes.add(fut.get());
                 }
@@ -32,21 +29,17 @@ class MultiThreads implements Callable<String> {
                 e.printStackTrace();
             }
         }
-
         executor.shutdown();
         return listBrokenImgHashes;
-
     }
 
     @Override
     public String call() throws Exception {
-
         if (!Check_image.checkIMG(image)) {
             Integer brokenImgHash = MakeHash.main(image);
             return brokenImgHash.toString();
         }
         return null;
     }
-
 }
 

@@ -9,6 +9,4 @@ class Picture {
     void setImg(Integer img) {
         this.img = img;
     }
-
-
 }
